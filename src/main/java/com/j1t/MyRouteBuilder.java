@@ -15,7 +15,7 @@ public class MyRouteBuilder extends RouteBuilder {
         String user = System.getenv("FTP_USER");
         String pwd = System.getenv("FTP_PWD");
         String port = System.getenv("FTP_PORT");
-        String service = System.getenv("FTP_SERVIC_NAME");
+        String service = System.getenv("FTP_SERVICE_NAME");
         String passive = System.getenv("FTP_PASSIVE_MODE");
         String chatId = System.getenv("TELEGRAM_CHAT_ID");
         String authToken = System.getenv("TELEGRAM_AUTH_TOKEN");
