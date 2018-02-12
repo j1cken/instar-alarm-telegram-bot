@@ -21,7 +21,7 @@ public class MyRouteBuilder extends RouteBuilder {
         String chatId = System.getenv("TELEGRAM_CHAT_ID");
         String authToken = System.getenv("TELEGRAM_AUTH_TOKEN");
 
-        from("ftp://" + user + ":" + pwd + "@" + service + ":" + port + "/?passiveMode=" + passive)
+        from("ftp://" + user + ":" + pwd + "@" + service + ":" + port + "/?binary=true&passiveMode=" + passive)
                 .setHeader("CamelTelegramChatId", constant(chatId))
                 .setHeader("CamelTelegramMediaType", constant(TelegramMediaType.PHOTO_JPG))
                 .to("telegram:bots/" + authToken);
