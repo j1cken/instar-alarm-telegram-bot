@@ -20,9 +20,11 @@ public class MyRouteBuilder extends RouteBuilder {
         String passive = System.getenv("FTP_PASSIVE_MODE");
         String chatId = System.getenv("TELEGRAM_CHAT_ID");
         String authToken = System.getenv("TELEGRAM_AUTH_TOKEN");
+        String delay = System.getenv("FTP_DELAY");
 
         from("ftp://" + user + ":" + pwd + "@" + service + ":" + port + "/?binary=true&delete=true&passiveMode="
-                + passive).bean(new MyTransformerBean(), "transform").setHeader("CamelTelegramChatId", constant(chatId))
+                + passive + "&delay=" + delay).bean(new MyTransformerBean(), "transform")
+                        .setHeader("CamelTelegramChatId", constant(chatId))
                         .setHeader("CamelTelegramMediaType", constant(TelegramMediaType.PHOTO_JPG))
                         .to("telegram:bots/" + authToken);
 
