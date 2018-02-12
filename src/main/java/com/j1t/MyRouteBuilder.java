@@ -1,6 +1,7 @@
 package com.j1t;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.telegram.TelegramMediaType;
 
 /**
  * A Camel Java DSL Router
@@ -21,7 +22,9 @@ public class MyRouteBuilder extends RouteBuilder {
         String authToken = System.getenv("TELEGRAM_AUTH_TOKEN");
 
         from("ftp://" + user + ":" + pwd + "@" + service + ":" + port + "/?passiveMode=" + passive)
-                .setHeader("CamelTelegramChatId", constant(chatId)).to("telegram:bots/" + authToken);
+                .setHeader("CamelTelegramChatId", constant(chatId))
+                .setHeader("CamelTelegramMediaType", constant(TelegramMediaType.PHOTO_JPG))
+                .to("telegram:bots/" + authToken);
 
     }
 
