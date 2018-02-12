@@ -21,10 +21,10 @@ public class MyRouteBuilder extends RouteBuilder {
         String chatId = System.getenv("TELEGRAM_CHAT_ID");
         String authToken = System.getenv("TELEGRAM_AUTH_TOKEN");
 
-        from("ftp://" + user + ":" + pwd + "@" + service + ":" + port + "/?binary=true&passiveMode=" + passive)
-                .bean(new MyTransformerBean(), "transform").setHeader("CamelTelegramChatId", constant(chatId))
-                .setHeader("CamelTelegramMediaType", constant(TelegramMediaType.PHOTO_JPG))
-                .to("telegram:bots/" + authToken);
+        from("ftp://" + user + ":" + pwd + "@" + service + ":" + port + "/?binary=true&delete=true&passiveMode="
+                + passive).bean(new MyTransformerBean(), "transform").setHeader("CamelTelegramChatId", constant(chatId))
+                        .setHeader("CamelTelegramMediaType", constant(TelegramMediaType.PHOTO_JPG))
+                        .to("telegram:bots/" + authToken);
 
     }
 
